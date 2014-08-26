@@ -1,0 +1,12 @@
+require(vegan)
+?vegdist
+CITATION(vegan)
+citation(vegan)
+citation()
+require(ape)
+citation(ape)
+citation("ape")
+citation("vegan")
+require(SYCNSA)
+require(SYNCSA)
+?syncsa
