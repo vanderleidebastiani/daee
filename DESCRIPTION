@@ -7,5 +7,5 @@ Author: Vanderlei Julio Debastiani
 Maintainer: Vanderlei Julio Debastiani
         <vanderleidebastiani@yahoo.com.br>
 Depends: ape, bbmle, picante, SYNCSA, vegan
-Description: Set of functions for analysis of ecological and evolutionary data. These functions calculate Phylogenetic Eigenvector Regression (PVR) with eigenvector selection, extract residuals from Mantel test and generate Linear Models (LM) with all possible combinations of variables included in the full model. The functions are available as an R package only to facilitate installation.
+Description: Set of functions for analysis of ecological and evolutionary data. These functions calculate Phylogenetic Eigenvector Regression (PVR) with eigenvector selection, extract residuals from Mantel test and generate Linear Models (LM) with all possible combinations of variables included in the full model.
 License: GPL-2
