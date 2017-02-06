@@ -1,11 +1,24 @@
 Package: daee
 Type: Package
 Title: Data Analysis for Ecology and Evolution
-Version: 0.1.1
-Date: May 14, 2014
+Version: 0.1.2
+Date: 2017-02-06
 Author: Vanderlei Julio Debastiani
 Maintainer: Vanderlei Julio Debastiani
-        <vanderleidebastiani@yahoo.com.br>
-Depends: ape, bbmle, picante, SYNCSA, vegan
-Description: Set of functions for analysis of ecological and evolutionary data. These functions calculate Phylogenetic Eigenvector Regression (PVR) with eigenvector selection, extract residuals from Mantel test and generate Linear Models (LM) with all possible combinations of variables included in the full model.
+    <vanderleidebastiani@yahoo.com.br>
+Depends:
+    PCPS
+Imports:
+    ape,
+    bbmle,
+    stats,
+    graphics,
+    utils
+Description: Set of functions for analysis of ecological and evolutionary
+    data. These functions calculate Phylogenetic Eigenvector Regression (PVR)
+    with eigenvector selection, extract residuals from Mantel test and generate
+    Linear Models (LM) with all possible combinations of variables included in
+    the full model. The functions are available as an R package only to facilitate
+    installation.
 License: GPL-2
+RoxygenNote: 5.0.1

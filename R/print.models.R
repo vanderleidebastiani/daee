@@ -1,5 +1,7 @@
-print.models<-function(x, ...){
-	n=10
+#' @rdname all.models
+#' @encoding UTF-8
+#' @export
+print.models<-function(x, n = 10, ...){
 	if(x$N_models<n){
 		n<-x$N_models
 	}

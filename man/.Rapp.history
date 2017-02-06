@@ -63,7 +63,4 @@ require(MASS)
 require(ggplot)
 require(gplots)
 ?lowess
-?lowess
-?procrustes
-?procrustes
 ?procrustes

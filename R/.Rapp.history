@@ -1,12 +1,948 @@
-require(vegan)
-?vegdist
-CITATION(vegan)
-citation(vegan)
-citation()
+cumulative=1.1
+(0>cumulative | cumulative>1)
+require(PCPS)
+wcmdscale.org
+??wcmdscale
+#' Internal function for organize the results of wcmdscale function#
+#'#
+#' Internal function for organize the results of \code{\link{wcmdscale}} function.#
+#' The function computes dissimilarity indices using the function \code{\link{vegdist}}#
+#' and perform Principal Coordinates Analysis (PCoA) using the function #
+#' \code{\link{wcmdscale}}.#
+#' #
+#' @encoding UTF-8#
+#' @importFrom vegan vegdist wcmdscale#
+#' @importFrom stats cor#
+#' @param data Data matrix.#
+#' @param method Method for dissimilarity index, as accepted by \code{\link{vegdist}}.#
+#' @param squareroot Logical argument (TRUE or FALSE) to specify if use square root#
+#' of dissimilarity index.#
+#' @param eig Logical argument (TRUE or FALSE) to indicates if eigenvalues are returned.#
+#' @param Logical argument (TRUE or FALSE) to indicates if correlations between axis #
+#' and original data are returned.#
+#' @param ... Other arguments passed to wcmdscale function.#
+#' @return \item{values}{The eigenvalues, relative eigenvalues and cumulative relative#
+#' eigenvalues.} \item{vectors}{The principal coordinates.} \item{correlations}{Correlations#
+#' between axis and original data.}#
+#' @author Vanderlei Julio Debastiani <vanderleidebastiani@@yahoo.com.br>#
+#' @seealso \code{\link{vegdist}}, \code{\link{wcmdscale}} #
+#' @keywords PCPS#
+#' @export#
+wcmdscale.org<-function(data, method, squareroot, eig, correlations, ...){#
+	res<-list()#
+	data.dist<-vegan::vegdist(data, method = method)#
+	if (squareroot) {#
+		data.dist <- sqrt(data.dist)#
+	}#
+	data.ordi <- vegan::wcmdscale(data.dist, eig = eig, ...)#
+	if(eig){#
+		res$vectors<-data.ordi$points#
+		values<-data.ordi$eig[data.ordi$eig>=0]#
+		res$values<-data.frame(Eigenvalue = values, Relative_eig = values/sum(values), Cumul_eig = cumsum(values/sum(values)))#
+		if(any(data.ordi$eig<0)){#
+			warning("Warning: Negative eigenvalues are present in the decomposition result, but only positive eigenvalues were returned", call. = FALSE)#
+		}#
+	} else {#
+		res$vectors<-data.ordi#
+	}#
+	colnames(res$vectors)<-paste("Axis.",seq_len(ncol(res$vectors)), sep = "")#
+	if(correlations){#
+		res.cor<-stats::cor(data, res$vectors)#
+		res$correlations<-res.cor#
+	}#
+return(res)#
+}
+ls()
+dist
+class(dist)
+dist
+dist<-as.dist(dist)
+class(dist)
+class(data)
+data<-dist
+class(data)
+(class(data)=="dist")
+(!class(data)=="dist")
+class(data)
+(!class(data)=="dist")
+class(data)
+(!class(data)=="dist")
+class(data)
+(!class(data)=="dist")
+class(data)
+(!class(data)=="dist")
+(class(data)=="dist")
+class(data)
+? wcmdscale
+? wcmdscale
+dist
+dist
+dist<-as.dist(dist)
+dist
+wcmdscale.org(dist,squareroot = TRUE, eig = TRUE, correlations = FALSE)
+#' Internal function for organize the results of wcmdscale function#
+#'#
+#' Internal function for organize the results of \code{\link{wcmdscale}} function.#
+#' The function computes dissimilarity indices using the function \code{\link{vegdist}}#
+#' and perform Principal Coordinates Analysis (PCoA) using the function #
+#' \code{\link{wcmdscale}}. If data is of class dist, the funcion do not computes#
+#' the dissimilarity indices.#
+#' #
+#' @encoding UTF-8#
+#' @importFrom vegan vegdist wcmdscale#
+#' @importFrom stats cor#
+#' @param data Data matrix or dissimilarities of class dist.#
+#' @param method Method for dissimilarity index, as accepted by \code{\link{vegdist}}.#
+#' @param squareroot Logical argument (TRUE or FALSE) to specify if use square root#
+#' of dissimilarity index.#
+#' @param eig Logical argument (TRUE or FALSE) to indicates if eigenvalues are returned.#
+#' @param Logical argument (TRUE or FALSE) to indicates if correlations between axis #
+#' and original data are returned.#
+#' @param ... Other arguments passed to wcmdscale function.#
+#' @return \item{values}{The eigenvalues, relative eigenvalues and cumulative relative#
+#' eigenvalues.} \item{vectors}{The principal coordinates.} \item{correlations}{Correlations#
+#' between axis and original data.}#
+#' @author Vanderlei Julio Debastiani <vanderleidebastiani@@yahoo.com.br>#
+#' @seealso \code{\link{vegdist}}, \code{\link{wcmdscale}} #
+#' @keywords PCPS#
+#' @export#
+wcmdscale.org<-function(data, method, squareroot, eig, correlations, ...){#
+	res<-list()#
+	if(class(data)=="dist"){#
+		data.dist<-data	#
+	} else {#
+		data.dist<-vegan::vegdist(data, method = method)#
+	}#
+	if (squareroot) {#
+		data.dist <- sqrt(data.dist)#
+	}#
+	data.ordi <- vegan::wcmdscale(data.dist, eig = eig, ...)#
+	if(eig){#
+		res$vectors<-data.ordi$points#
+		values<-data.ordi$eig[data.ordi$eig>=0]#
+		res$values<-data.frame(Eigenvalue = values, Relative_eig = values/sum(values), Cumul_eig = cumsum(values/sum(values)))#
+		if(any(data.ordi$eig<0)){#
+			warning("Warning: Negative eigenvalues are present in the decomposition result, but only positive eigenvalues were returned", call. = FALSE)#
+		}#
+	} else {#
+		res$vectors<-data.ordi#
+	}#
+	colnames(res$vectors)<-paste("Axis.",seq_len(ncol(res$vectors)), sep = "")#
+	if(correlations){#
+		res.cor<-stats::cor(data, res$vectors)#
+		res$correlations<-res.cor#
+	}#
+return(res)#
+}
+wcmdscale.org(dist,squareroot = TRUE, eig = TRUE, correlations = FALSE)
+ord<-wcmdscale.org(dist, squareroot = TRUE, eig = TRUE, correlations = FALSE)
+ord
+print(paste("Relative eigenvalue for axis 1 =",relative[1]))
+print(paste("Relative eigenvalue for axis 2 =",relative[2]))
+stop("\n Cumulative percentage must be higher than the cumulative percentage of the first two eigenvalues\n")
+values<-ord$values[,1]
+values
+cumulative2<-as.vector(rep(NA,length(values)))
+for (i in 1:length(values)){#
+		cumulative2[i]<-sum((values/sum(values))[1:i])#
+	}
+cumulative2
+use<-which((cumulative2<=cumulative)==TRUE)
+use
+cumulative2
+cumulative2<=cumulative
+cumulative
+cumulative=0.99
+use<-which((cumulative2<=cumulative)==TRUE)
+use
+cumulative2<=cumulative
+ord$values
+ord$values[,3]
+use<-which(ord$values[,3]<-cumulative)
+use<-ord$values[,3]<-cumulative
+use
+ord$values
+ord<-wcmdscale.org(dist, squareroot = TRUE, eig = TRUE, correlations = FALSE)
+ord$values[,3]
+ord$values[,3]<=cumulative
+use<-ord$values[,3]<=cumulative
+(cumulative==1)
+length(values)
+use
+1:(length(values)-1)
+use
+which(ord$values[,3]<=cumulative)
+use<-which(ord$values[,3]<=cumulative)
+use
+(cumulative==1)
+(cumulative==1)
+length(use)
+-(length(use))
+use<-use[-(length(use))]
+use
+vectors
+use
+ord$vectors
+ord$vectors[,use]
+x<-ord$vectors[,use]
+ncol(traits)[
+]
+vare<-ncol(traits)
+fac<-length(use)
+fac
+xnam <- paste("x[,", 1:fac,"]", sep="")
+xnam
+fac
+result<-matrix(NA,nrow=vare,ncol=fac)#
+		for(i in 1:vare){#
+			y<-traits[,i]#
+			for (j in 1:fac){#
+				result[i,j]<-as.numeric(summary(lm(as.formula(paste("y ~ ", paste(xnam[1:j], collapse= "+")))))$r.squared)#
+				}	#
+		}
+result
+colnames(result)=colnames(vectors)[1:fac]
+rownames(result)=colnames(traits,do.NULL=FALSE,prefix="Trait.")
+result
+colnames(traits,do.NULL=FALSE,prefix="Trait.")
+rownames(result)=colnames(traits,do.NULL=FALSE,prefix="Trait.")
+result
+colnames(traits,do.NULL=FALSE,prefix="Trait.")
+colnames(vectors)[1:fac]
+colnames(ord$vectors)[1:fac]
+colnames(result)=colnames(ord$vectors)[1:fac]
+result<-matrix(NA,nrow=vare,ncol=fac)#
+		for(i in 1:vare){#
+			y<-traits[,i]#
+			for (j in 1:fac){#
+				result[i,j]<-as.numeric(stats::summary.lm(stats::lm(stats::as.formula(paste("y ~ ", paste(xnam[1:j], collapse= "+")))))$r.squared)#
+				}	#
+		}
+result
+xnam
+x
+cbind(y,xnam)
+y
+cbind(y,x)
+colnames(result)<-colnames(ord$vectors)[1:fac]#
+	rownames(result)<-colnames(traits,do.NULL=FALSE,prefix="Trait.")
+resFIN<-matrix(NA,vare,6)#
+		for(i in 1:vare){#
+			y<-traits[,i]#
+			MOR=NULL#
+			xnam2<-xnam#
+			possi<-1:fac#
+			possi2<-1:fac#
+			f<-character()		#
+			res.MORAN<-matrix(NA,fac,2)#
+				repeat{#
+					result.moran<-matrix(NA,2,fac)#
+					for (j in possi2){#
+						regre<-lm(as.formula(paste("y ~ ",paste(f,sep="",collapse=" + "),paste("+",xnam[j]),collapse=" + ")))#
+						moran<-Moran.I(regre$residuals,dist,scaled=TRUE)#
+						result.moran[1,j]<-moran$observed#
+						result.moran[2,j]<-moran$p.value#
+						}#
+					colnames(result.moran)=possi#
+					menor<-as.numeric(noquote(names(sort(result.moran[1,],decreasing=FALSE))[1]))#
+					xnam2<-xnam2[-which(xnam2==xnam[menor])]#
+					MOR<-result.moran[1,menor]#
+					pMOR<-result.moran[2,menor]#
+					f<-c(f,paste(xnam[menor]))#
+					res.MORAN[length(f),1]<-MOR#
+					res.MORAN[length(f),2]<-pMOR#
+					possi2<-possi2[-which(possi2==possi[menor])]			#
+					if (length(f)==fac) break#
+					if ((MOR<=VMoran)==TRUE){#
+						if (pMOR>=pMoran) break#
+					}#
+				}#
+			minMORAN<-length(f)#
+			regre2<-lm(as.formula(paste("y ~ ",paste(f[1:minMORAN],sep="",collapse=" + "))))#
+			resFIN[i,1]<-paste("y ~ ",paste(f[1:minMORAN],sep="",collapse=" + "))#
+			resFIN[i,2]<-minMORAN#
+			moran2<-Moran.I(regre2$residuals,dist,scaled=TRUE)#
+			resFIN[i,3]<-moran2$observed#
+			resFIN[i,4]<-moran2$p.value#
+			summary.regre2<-summary(regre2)#
+			resFIN[i,5]<-as.numeric(summary.regre2$r.squared)#
+			resFIN[i,6]<-as.numeric(pf(summary.regre2$fstatistic[1],summary.regre2$fstatistic[2],summary.regre2$fstatistic[3],lower.tail=FALSE))#
+		}
+vare
+Moran.I
 require(ape)
-citation(ape)
-citation("ape")
-citation("vegan")
-require(SYCNSA)
-require(SYNCSA)
-?syncsa
+Moran.I
+x<-ord$vectors[,use]#
+	vare<-ncol(traits)#
+	fac<-length(use)#
+	xnam <- paste("x[,", 1:fac,"]", sep="")#
+	result<-matrix(NA,nrow=vare,ncol=fac)#
+	for(i in 1:vare){#
+		y<-traits[,i]#
+		for (j in 1:fac){#
+			result[i,j]<-as.numeric(stats::summary.lm(stats::lm(stats::as.formula(paste("y ~ ", paste(xnam[1:j], collapse= "+")))))$r.squared)#
+		}	#
+	}#
+	colnames(result)<-colnames(ord$vectors)[1:fac]#
+	rownames(result)<-colnames(traits,do.NULL=FALSE,prefix="Trait.")
+resFIN<-matrix(NA,vare,6)#
+		for(i in 1:vare){#
+			y<-traits[,i]#
+			MOR=NULL#
+			xnam2<-xnam#
+			possi<-1:fac#
+			possi2<-1:fac#
+			f<-character()		#
+			res.MORAN<-matrix(NA,fac,2)#
+				repeat{#
+					result.moran<-matrix(NA,2,fac)#
+					for (j in possi2){#
+						regre<-stats::lm(stats::as.formula(paste("y ~ ",paste(f,sep="",collapse=" + "),paste("+",xnam[j]),collapse=" + ")))#
+						moran<-ape::Moran.I(regre$residuals,dist,scaled=TRUE)#
+						result.moran[1,j]<-moran$observed#
+						result.moran[2,j]<-moran$p.value#
+						}#
+					colnames(result.moran)=possi#
+					menor<-as.numeric(noquote(names(sort(result.moran[1,],decreasing=FALSE))[1]))#
+					xnam2<-xnam2[-which(xnam2==xnam[menor])]#
+					MOR<-result.moran[1,menor]#
+					pMOR<-result.moran[2,menor]#
+					f<-c(f,paste(xnam[menor]))#
+					res.MORAN[length(f),1]<-MOR#
+					res.MORAN[length(f),2]<-pMOR#
+					possi2<-possi2[-which(possi2==possi[menor])]			#
+					if (length(f)==fac) break#
+					if ((MOR<=VMoran)==TRUE){#
+						if (pMOR>=pMoran) break#
+					}#
+				}#
+			minMORAN<-length(f)#
+			regre2<-lm(as.formula(paste("y ~ ",paste(f[1:minMORAN],sep="",collapse=" + "))))#
+			resFIN[i,1]<-paste("y ~ ",paste(f[1:minMORAN],sep="",collapse=" + "))#
+			resFIN[i,2]<-minMORAN#
+			moran2<-Moran.I(regre2$residuals,dist,scaled=TRUE)#
+			resFIN[i,3]<-moran2$observed#
+			resFIN[i,4]<-moran2$p.value#
+			summary.regre2<-summary(regre2)#
+			resFIN[i,5]<-as.numeric(summary.regre2$r.squared)#
+			resFIN[i,6]<-as.numeric(pf(summary.regre2$fstatistic[1],summary.regre2$fstatistic[2],summary.regre2$fstatistic[3],lower.tail=FALSE))#
+		}
+i
+y<-traits[,i]
+MOR=NULL
+xnam2<-xnam
+possi<-1:fac
+possi2<-1:fac
+f<-character()
+f
+res.MORAN<-matrix(NA,fac,2)
+result.moran<-matrix(NA,2,fac)
+j
+for (j in possi2){#
+						regre<-stats::lm(stats::as.formula(paste("y ~ ",paste(f,sep="",collapse=" + "),paste("+",xnam[j]),collapse=" + ")))#
+						moran<-ape::Moran.I(regre$residuals,dist,scaled=TRUE)#
+						result.moran[1,j]<-moran$observed#
+						result.moran[2,j]<-moran$p.value#
+						}
+f
+xnam
+xnam[j]
+stats::as.formula(paste("y ~ ",paste(f,sep="",collapse=" + "),paste("+",xnam[j]),collapse=" + "))
+y
+x
+regre<-stats::lm(stats::as.formula(paste("y ~ ",paste(f,sep="",collapse=" + "),paste("+",xnam[j]),collapse=" + ")))
+regre
+dist
+ape::Moran.I(regre$residuals,dist,scaled=TRUE)
+moran<-ape::Moran.I(regre$residuals,as.matrix(dist),scaled=TRUE)
+result.moran[1,j]<-moran$observed
+result.moran[2,j]<-moran$p.value
+resFIN<-matrix(NA,vare,6)#
+		for(i in 1:vare){#
+			y<-traits[,i]#
+			MOR=NULL#
+			xnam2<-xnam#
+			possi<-1:fac#
+			possi2<-1:fac#
+			f<-character()		#
+			res.MORAN<-matrix(NA,fac,2)#
+				repeat{#
+					result.moran<-matrix(NA,2,fac)#
+					for (j in possi2){#
+						regre<-stats::lm(stats::as.formula(paste("y ~ ",paste(f,sep="",collapse=" + "),paste("+",xnam[j]),collapse=" + ")))#
+						moran<-ape::Moran.I(regre$residuals,as.matrix(dist),scaled=TRUE)#
+						result.moran[1,j]<-moran$observed#
+						result.moran[2,j]<-moran$p.value#
+						}#
+					colnames(result.moran)=possi#
+					menor<-as.numeric(noquote(names(sort(result.moran[1,],decreasing=FALSE))[1]))#
+					xnam2<-xnam2[-which(xnam2==xnam[menor])]#
+					MOR<-result.moran[1,menor]#
+					pMOR<-result.moran[2,menor]#
+					f<-c(f,paste(xnam[menor]))#
+					res.MORAN[length(f),1]<-MOR#
+					res.MORAN[length(f),2]<-pMOR#
+					possi2<-possi2[-which(possi2==possi[menor])]			#
+					if (length(f)==fac) break#
+					if ((MOR<=VMoran)==TRUE){#
+						if (pMOR>=pMoran) break#
+					}#
+				}#
+			minMORAN<-length(f)#
+			regre2<-lm(as.formula(paste("y ~ ",paste(f[1:minMORAN],sep="",collapse=" + "))))#
+			resFIN[i,1]<-paste("y ~ ",paste(f[1:minMORAN],sep="",collapse=" + "))#
+			resFIN[i,2]<-minMORAN#
+			moran2<-Moran.I(regre2$residuals,dist,scaled=TRUE)#
+			resFIN[i,3]<-moran2$observed#
+			resFIN[i,4]<-moran2$p.value#
+			summary.regre2<-summary(regre2)#
+			resFIN[i,5]<-as.numeric(summary.regre2$r.squared)#
+			resFIN[i,6]<-as.numeric(pf(summary.regre2$fstatistic[1],summary.regre2$fstatistic[2],summary.regre2$fstatistic[3],lower.tail=FALSE))#
+		}
+colnames(result.moran)=possi
+menor<-as.numeric(noquote(names(sort(result.moran[1,],decreasing=FALSE))[1]))
+xnam2<-xnam2[-which(xnam2==xnam[menor])]
+MOR<-result.moran[1,menor]
+pMOR<-result.moran[2,menor]
+f<-c(f,paste(xnam[menor]))
+res.MORAN[length(f),1]<-MOR
+res.MORAN[length(f),2]<-pMOR
+possi2<-possi2[-which(possi2==possi[menor])]
+if (length(f)==fac) break#
+					if ((MOR<=VMoran)==TRUE){#
+						if (pMOR>=pMoran) break#
+					}
+minMORAN<-length(f)
+regre2<-lm(as.formula(paste("y ~ ",paste(f[1:minMORAN],sep="",collapse=" + "))))
+resFIN[i,1]<-paste("y ~ ",paste(f[1:minMORAN],sep="",collapse=" + "))
+resFIN[i,2]<-minMORAN
+resFIN<-matrix(NA,vare,6)#
+		for(i in 1:vare){#
+			y<-traits[,i]#
+			MOR=NULL#
+			xnam2<-xnam#
+			possi<-1:fac#
+			possi2<-1:fac#
+			f<-character()		#
+			res.MORAN<-matrix(NA,fac,2)#
+				repeat{#
+					result.moran<-matrix(NA,2,fac)#
+					for (j in possi2){#
+						regre<-stats::lm(stats::as.formula(paste("y ~ ",paste(f,sep="",collapse=" + "),paste("+",xnam[j]),collapse=" + ")))#
+						moran<-ape::Moran.I(regre$residuals,as.matrix(dist),scaled=TRUE)#
+						result.moran[1,j]<-moran$observed#
+						result.moran[2,j]<-moran$p.value#
+						}#
+					colnames(result.moran)=possi#
+					menor<-as.numeric(noquote(names(sort(result.moran[1,],decreasing=FALSE))[1]))#
+					xnam2<-xnam2[-which(xnam2==xnam[menor])]#
+					MOR<-result.moran[1,menor]#
+					pMOR<-result.moran[2,menor]#
+					f<-c(f,paste(xnam[menor]))#
+					res.MORAN[length(f),1]<-MOR#
+					res.MORAN[length(f),2]<-pMOR#
+					possi2<-possi2[-which(possi2==possi[menor])]			#
+					if (length(f)==fac) break#
+					if ((MOR<=VMoran)==TRUE){#
+						if (pMOR>=pMoran) break#
+					}#
+				}#
+			minMORAN<-length(f)#
+			regre2<-lm(as.formula(paste("y ~ ",paste(f[1:minMORAN],sep="",collapse=" + "))))#
+			resFIN[i,1]<-paste("y ~ ",paste(f[1:minMORAN],sep="",collapse=" + "))#
+			resFIN[i,2]<-minMORAN#
+			moran2<-Moran.I(regre2$residuals,as.matrix(dist),scaled=TRUE)#
+			resFIN[i,3]<-moran2$observed#
+			resFIN[i,4]<-moran2$p.value#
+			summary.regre2<-summary(regre2)#
+			resFIN[i,5]<-as.numeric(summary.regre2$r.squared)#
+			resFIN[i,6]<-as.numeric(pf(summary.regre2$fstatistic[1],summary.regre2$fstatistic[2],summary.regre2$fstatistic[3],lower.tail=FALSE))#
+		}
+colnames(resFIN)=c("Parameters","N.Parameters","Moran.Obs","Moran.p","R.Squared","p")#
+	rownames(resFIN)=colnames(traits,do.NULL=FALSE,prefix="Trait.")
+res.x<-t(as.matrix(values2[1:fac,3]))#
+	colnames(res.x)=colnames(res.x,do.NULL=FALSE,prefix="Axis.")#
+	rownames(res.x)="Cumulative"
+fac
+1:fac
+res.x<-t(as.matrix(ord$values[1:fac,3]))
+res.x
+colnames(res.x)=colnames(res.x,do.NULL=FALSE,prefix="Axis.")
+rownames(res.x)="Cumulative"
+inf<-res.x[1,fac]
+RES<-list(values=ord$values,vectors=ord$vectors,inf.cumulative=inf,n.axis.considered=fac,moran.less.than=VMoran,p.moran.greater.than=pMoran,PSR.curve.axis.x=res.x,PSR.curve.axis.y=result,minimum.moran=resFIN)
+RES
+dist<-as.matrix(dist)
+1:fac
+1:fac
+possi
+possi2
+f<-character()
+res.MORAN<-matrix(NA,fac,2)
+res.MORAN
+result.moran<-matrix(NA,2,fac)
+for (j in possi2){#
+						regre<-stats::lm(stats::as.formula(paste("y ~ ",paste(f,sep="",collapse=" + "),paste("+",xnam[j]),collapse=" + ")))#
+						moran<-ape::Moran.I(regre$residuals, dist, scaled = TRUE)#
+						result.moran[1,j]<-moran$observed#
+						result.moran[2,j]<-moran$p.value#
+						}
+colnames(result.moran)=possi
+menor<-as.numeric(noquote(names(sort(result.moran[1,],decreasing=FALSE))[1]))
+xnam2<-xnam2[-which(xnam2==xnam[menor])]
+MOR<-result.moran[1,menor]
+pMOR<-result.moran[2,menor]
+MOR
+pMOR
+f<-c(f,paste(xnam[menor]))
+f
+res.MORAN[length(f),1]<-MOR
+res.MORAN
+length(f)
+length(f)
+res.MORAN[length(f),1]<-MOR#
+					res.MORAN[length(f),2]<-pMOR
+possi2<-possi2[-which(possi2==possi[menor])]
+possi2
+MOR
+VMoran
+(MOR<=VMoran)
+result
+pf
+stats::summary.lm(regre2)
+ls()
+rm(list=ls[-36])
+rm(list=ls()[-36])
+ls
+ls
+ls()
+data(flona)
+traits<-flona$traits[,1:4]
+dist<-flona$phylo
+cumulative=0.99#
+#
+VMoran=0.025#
+pMoran=0.05#
+check=TRUE
+if(0>cumulative | cumulative>1){#
+		stop("\n Cumulative percentage must be higher than the cumulative percentage of the first two eigenvalues, and less than 1\n")#
+	}
+traits<-as.matrix(traits)#
+	dist<-as.dist(dist)
+if (check==TRUE){#
+		if (is.null(rownames(traits))) {#
+            stop("\n Error in rownames of traits\n")#
+        }#
+        if (is.null(colnames(dist))) {#
+            stop("\n Error in colnames of dist\n")#
+        }#
+        if (is.null(rownames(dist))) {#
+            stop("\n Error in rownames of dist\n")#
+        }			#
+		chec<-rownames(traits)==colnames(dist)#
+		if (length(which(chec==FALSE))!=0){#
+			stop("\n Matrices labels do not match. Check data\n")#
+		}#
+	}
+dist<-flona$phylo
+if (check==TRUE){#
+		if (is.null(rownames(traits))) {#
+            stop("\n Error in rownames of traits\n")#
+        }#
+        if (is.null(colnames(dist))) {#
+            stop("\n Error in colnames of dist\n")#
+        }#
+        if (is.null(rownames(dist))) {#
+            stop("\n Error in rownames of dist\n")#
+        }			#
+		chec<-rownames(traits)==colnames(dist)#
+		if (length(which(chec==FALSE))!=0){#
+			stop("\n Matrices labels do not match. Check data\n")#
+		}#
+	}
+dist<-as.dist(dist)
+dist
+ord<-wcmdscale.org(dist, squareroot = TRUE, eig = TRUE, correlations = FALSE)
+use<-which(ord$values[,3]<=cumulative)#
+	if(cumulative==1){#
+		use<-use[-(length(use))]#
+	}
+x<-ord$vectors[,use]#
+	vare<-ncol(traits)#
+	fac<-length(use)#
+	xnam <- paste("x[,", 1:fac,"]", sep="")#
+	result<-matrix(NA, nrow = vare, ncol = fac)#
+	for(i in 1:vare){#
+		y<-traits[,i]#
+		for (j in 1:fac){#
+			result[i,j]<-as.numeric(stats::summary.lm(stats::lm(stats::as.formula(paste("y ~ ", paste(xnam[1:j], collapse= "+")))))$r.squared)#
+		}	#
+	}#
+	colnames(result)<-colnames(ord$vectors)[1:fac]#
+	rownames(result)<-colnames(traits,do.NULL=FALSE,prefix="Trait.")#
+	dist<-as.matrix(dist)#
+	resFIN<-matrix(NA,vare,6)#
+		for(i in 1:vare){#
+			y<-traits[,i]#
+			MOR=NULL#
+			xnam2<-xnam#
+			possi<-1:fac#
+			possi2<-1:fac#
+			f<-character()		#
+			res.MORAN<-matrix(NA,fac,2)#
+				repeat{#
+					result.moran<-matrix(NA,2,fac)#
+					for (j in possi2){#
+						regre<-stats::lm(stats::as.formula(paste("y ~ ",paste(f,sep="",collapse=" + "),paste("+",xnam[j]),collapse=" + ")))#
+						moran<-ape::Moran.I(regre$residuals, dist, scaled = TRUE)#
+						result.moran[1,j]<-moran$observed#
+						result.moran[2,j]<-moran$p.value#
+						}#
+					colnames(result.moran)<-possi#
+					menor<-as.numeric(noquote(names(sort(result.moran[1,], decreasing = FALSE))[1]))#
+					xnam2<-xnam2[-which(xnam2==xnam[menor])]#
+					MOR<-result.moran[1,menor]#
+					pMOR<-result.moran[2,menor]#
+					f<-c(f,paste(xnam[menor]))#
+					res.MORAN[length(f),1]<-MOR#
+					res.MORAN[length(f),2]<-pMOR#
+					possi2<-possi2[-which(possi2==possi[menor])]			#
+					if (length(f)==fac) break#
+					if (MOR<=VMoran){#
+						if (pMOR>=pMoran) break#
+					}#
+				}#
+			minMORAN<-length(f)#
+			regre2<-stats::lm(stats::as.formula(paste("y ~ ", paste(f[1:minMORAN], sep = "", collapse = " + "))))#
+			resFIN[i,1]<-paste("y ~ ",paste(f[1:minMORAN],sep="", collapse = " + "))#
+			resFIN[i,2]<-minMORAN#
+			moran2<-ape::Moran.I(regre2$residuals, dist, scaled = TRUE)#
+			resFIN[i,3]<-moran2$observed#
+			resFIN[i,4]<-moran2$p.value#
+			summary.regre2<-stats::summary.lm(regre2)#
+			resFIN[i,5]<-as.numeric(summary.regre2$r.squared)#
+			resFIN[i,6]<-as.numeric(stats::pf(summary.regre2$fstatistic[1],summary.regre2$fstatistic[2],summary.regre2$fstatistic[3],lower.tail=FALSE))#
+		}#
+	colnames(resFIN)<-c("Parameters","N.Parameters","Moran.Obs","Moran.p","R.Squared","p")#
+	rownames(resFIN)<-colnames(traits,do.NULL=FALSE,prefix="Trait.")#
+	res.x<-t(as.matrix(ord$values[1:fac,3]))#
+	colnames(res.x)=colnames(res.x,do.NULL=FALSE,prefix="Axis.")#
+	rownames(res.x)="Cumulative"#
+	inf<-res.x[1,fac]#
+	RES<-list(values=ord$values,vectors=ord$vectors,inf.cumulative=inf,n.axis.considered=fac,moran.less.than=VMoran,p.moran.greater.than=pMoran,PSR.curve.axis.x=res.x,PSR.curve.axis.y=result,minimum.moran=resFIN)
+RES
+stats::as.formula(paste("y ~ ",paste(f, sep = "", collapse = " + "), paste("+", xnam[j]), collapse = " + "))
+possi2
+colnames(result.moran)<-possi
+result.moran
+menor<-as.numeric(noquote(names(sort(result.moran[1,], decreasing = FALSE))[1]))
+menor
+xnam2<-xnam2[-which(xnam2==xnam[menor])]#
+					MOR<-result.moran[1,menor]#
+					pMOR<-result.moran[2,menor]#
+					f<-c(f,paste(xnam[menor]))#
+					res.MORAN[length(f),1]<-MOR#
+					res.MORAN[length(f),2]<-pMOR#
+					possi2<-possi2[-which(possi2==possi[menor])]
+(length(f)==fac)
+(MOR<=VMoran)
+RES
+MOR
+VMoran
+if(0>cumulative | cumulative>1){#
+		stop("\n Cumulative percentage must be higher than the cumulative percentage of the first two eigenvalues, and less than 1\n")#
+	}#
+	traits<-as.matrix(traits)#
+	if (check==TRUE){#
+		if (is.null(rownames(traits))) {#
+            stop("\n Error in rownames of traits\n")#
+        }#
+        if (is.null(colnames(dist))) {#
+            stop("\n Error in colnames of dist\n")#
+        }#
+        if (is.null(rownames(dist))) {#
+            stop("\n Error in rownames of dist\n")#
+        }			#
+		chec<-rownames(traits)==colnames(dist)#
+		if (length(which(chec==FALSE))!=0){#
+			stop("\n Matrices labels do not match. Check data\n")#
+		}#
+	}#
+	dist<-as.dist(dist)#
+	ord<-PCPS::wcmdscale.org(dist, squareroot = TRUE, eig = TRUE, correlations = FALSE)#
+	use<-which(ord$values[,3]<=cumulative)#
+	if(cumulative==1){#
+		use<-use[-(length(use))]#
+	}#
+	x<-ord$vectors[,use]#
+	vare<-ncol(traits)#
+	fac<-length(use)#
+	xnam <- paste("x[,", 1:fac,"]", sep="")#
+	result<-matrix(NA, nrow = vare, ncol = fac)#
+	for(i in 1:vare){#
+		y<-traits[,i]#
+		for (j in 1:fac){#
+			result[i,j]<-as.numeric(stats::summary.lm(stats::lm(stats::as.formula(paste("y ~ ", paste(xnam[1:j], collapse= "+")))))$r.squared)#
+		}	#
+	}#
+	colnames(result)<-colnames(ord$vectors)[1:fac]#
+	rownames(result)<-colnames(traits, do.NULL = FALSE, prefix = "Trait.")#
+	dist<-as.matrix(dist)#
+	resFIN<-matrix(NA, vare, 6)#
+		for(i in 1:vare){#
+			y<-traits[,i]#
+			MOR<-NULL#
+			xnam2<-xnam#
+			possi<-1:fac#
+			possi2<-1:fac#
+			f<-character()		#
+			res.MORAN<-matrix(NA, fac, 2)#
+				repeat{#
+					result.moran<-matrix(NA, 2, fac)#
+					for (j in possi2){#
+						regre<-stats::lm(stats::as.formula(paste("y ~ ",paste(f, sep = "", collapse = " + "), paste("+", xnam[j]), collapse = " + ")))#
+						moran<-ape::Moran.I(regre$residuals, dist, scaled = TRUE)#
+						result.moran[1,j]<-moran$observed#
+						result.moran[2,j]<-moran$p.value#
+					}#
+					colnames(result.moran)<-possi#
+					menor<-as.numeric(noquote(names(sort(result.moran[1,], decreasing = FALSE))[1]))#
+					xnam2<-xnam2[-which(xnam2==xnam[menor])]#
+					MOR<-result.moran[1,menor]#
+					pMOR<-result.moran[2,menor]#
+					f<-c(f,paste(xnam[menor]))#
+					res.MORAN[length(f),1]<-MOR#
+					res.MORAN[length(f),2]<-pMOR#
+					possi2<-possi2[-which(possi2==possi[menor])]			#
+					if (length(f)==fac) break#
+					if (MOR<=VMoran){#
+						if (pMOR>=pMoran) break#
+					}#
+				}#
+			minMORAN<-length(f)#
+			regre2<-stats::lm(stats::as.formula(paste("y ~ ", paste(f[1:minMORAN], sep = "", collapse = " + "))))#
+			resFIN[i,1]<-paste("y ~ ", paste(f[1:minMORAN], sep = "", collapse = " + "))#
+			resFIN[i,2]<-minMORAN#
+			moran2<-ape::Moran.I(regre2$residuals, dist, scaled = TRUE)#
+			resFIN[i,3]<-moran2$observed#
+			resFIN[i,4]<-moran2$p.value#
+			summary.regre2<-stats::summary.lm(regre2)#
+			resFIN[i,5]<-as.numeric(summary.regre2$r.squared)#
+			resFIN[i,6]<-as.numeric(stats::pf(summary.regre2$fstatistic[1], summary.regre2$fstatistic[2], summary.regre2$fstatistic[3], lower.tail = FALSE))#
+		}#
+	colnames(resFIN)<-c("Parameters", "N.Parameters", "Moran.Obs", "Moran.p", "R.Squared", "p")#
+	rownames(resFIN)<-colnames(traits, do.NULL = FALSE, prefix = "Trait.")#
+	res.x<-t(as.matrix(ord$values[1:fac,3]))#
+	colnames(res.x)<-colnames(res.x, do.NULL = FALSE, prefix = "Axis.")#
+	rownames(res.x)<-"Cumulative"#
+	inf<-res.x[1,fac]#
+	RES<-list(values = ord$values, vectors = ord$vectors, inf.cumulative = inf, n.axis.considered = fac, moran.less.than = VMoran, p.moran.greater.than = pMoran, PSR.curve.axis.x = res.x, PSR.curve.axis.y = result, minimum.moran = resFIN)#
+	class(RES)<-"pvr"#
+	return(RES)
+if(0>cumulative | cumulative>1){#
+		stop("\n Cumulative percentage must be higher than the cumulative percentage of the first two eigenvalues, and less than 1\n")#
+	}#
+	traits<-as.matrix(traits)#
+	if (check==TRUE){#
+		if (is.null(rownames(traits))) {#
+            stop("\n Error in rownames of traits\n")#
+        }#
+        if (is.null(colnames(dist))) {#
+            stop("\n Error in colnames of dist\n")#
+        }#
+        if (is.null(rownames(dist))) {#
+            stop("\n Error in rownames of dist\n")#
+        }			#
+		chec<-rownames(traits)==colnames(dist)#
+		if (length(which(chec==FALSE))!=0){#
+			stop("\n Matrices labels do not match. Check data\n")#
+		}#
+	}#
+	dist<-as.dist(dist)#
+	ord<-PCPS::wcmdscale.org(dist, squareroot = TRUE, eig = TRUE, correlations = FALSE)#
+	use<-which(ord$values[,3]<=cumulative)#
+	if(cumulative==1){#
+		use<-use[-(length(use))]#
+	}#
+	x<-ord$vectors[,use]#
+	vare<-ncol(traits)#
+	fac<-length(use)#
+	xnam <- paste("x[,", 1:fac,"]", sep="")#
+	result<-matrix(NA, nrow = vare, ncol = fac)#
+	for(i in 1:vare){#
+		y<-traits[,i]#
+		for (j in 1:fac){#
+			result[i,j]<-as.numeric(stats::summary.lm(stats::lm(stats::as.formula(paste("y ~ ", paste(xnam[1:j], collapse= "+")))))$r.squared)#
+		}	#
+	}#
+	colnames(result)<-colnames(ord$vectors)[1:fac]#
+	rownames(result)<-colnames(traits, do.NULL = FALSE, prefix = "Trait.")#
+	dist<-as.matrix(dist)#
+	resFIN<-matrix(NA, vare, 6)#
+		for(i in 1:vare){#
+			y<-traits[,i]#
+			MOR<-NULL#
+			xnam2<-xnam#
+			possi<-1:fac#
+			possi2<-1:fac#
+			f<-character()		#
+			res.MORAN<-matrix(NA, fac, 2)#
+				repeat{#
+					result.moran<-matrix(NA, 2, fac)#
+					for (j in possi2){#
+						regre<-stats::lm(stats::as.formula(paste("y ~ ",paste(f, sep = "", collapse = " + "), paste("+", xnam[j]), collapse = " + ")))#
+						moran<-ape::Moran.I(regre$residuals, dist, scaled = TRUE)#
+						result.moran[1,j]<-moran$observed#
+						result.moran[2,j]<-moran$p.value#
+					}#
+					colnames(result.moran)<-possi#
+					menor<-as.numeric(noquote(names(sort(result.moran[1,], decreasing = FALSE))[1]))#
+					xnam2<-xnam2[-which(xnam2==xnam[menor])]#
+					MOR<-result.moran[1,menor]#
+					pMOR<-result.moran[2,menor]#
+					f<-c(f,paste(xnam[menor]))#
+					res.MORAN[length(f),1]<-MOR#
+					res.MORAN[length(f),2]<-pMOR#
+					possi2<-possi2[-which(possi2==possi[menor])]			#
+					if (length(f)==fac) break#
+					if (MOR<=VMoran){#
+						if (pMOR>=pMoran) break#
+					}#
+				}#
+			minMORAN<-length(f)#
+			regre2<-stats::lm(stats::as.formula(paste("y ~ ", paste(f[1:minMORAN], sep = "", collapse = " + "))))#
+			resFIN[i,1]<-paste("y ~ ", paste(f[1:minMORAN], sep = "", collapse = " + "))#
+			resFIN[i,2]<-minMORAN#
+			moran2<-ape::Moran.I(regre2$residuals, dist, scaled = TRUE)#
+			resFIN[i,3]<-moran2$observed#
+			resFIN[i,4]<-moran2$p.value#
+			summary.regre2<-stats::summary.lm(regre2)#
+			resFIN[i,5]<-as.numeric(summary.regre2$r.squared)#
+			resFIN[i,6]<-as.numeric(stats::pf(summary.regre2$fstatistic[1], summary.regre2$fstatistic[2], summary.regre2$fstatistic[3], lower.tail = FALSE))#
+		}#
+	colnames(resFIN)<-c("Parameters", "N.Parameters", "Moran.Obs", "Moran.p", "R.Squared", "p")#
+	rownames(resFIN)<-colnames(traits, do.NULL = FALSE, prefix = "Trait.")#
+	res.x<-t(as.matrix(ord$values[1:fac,3]))#
+	colnames(res.x)<-colnames(res.x, do.NULL = FALSE, prefix = "Axis.")#
+	rownames(res.x)<-"Cumulative"#
+	inf<-res.x[1,fac]#
+	RES<-list(values = ord$values, vectors = ord$vectors, inf.cumulative = inf, n.axis.considered = fac, moran.less.than = VMoran, p.moran.greater.than = pMoran, PSR.curve.axis.x = res.x, PSR.curve.axis.y = result, minimum.moran = resFIN)#
+	class(RES)<-"pvr"
+RES
+PVR
+PVR<-function(traits,dist,cumulative=0.99,VMoran=0.025,pMoran=0.05,check=TRUE){#
+	if((0<=cumulative & cumulative<=1)==FALSE){#
+		stop("\n Cumulative percentage must be higher than the cumulative percentage of the first two eigenvalues, and less than 1\n")#
+	}#
+	traits<-as.matrix(traits)#
+	dist<-as.matrix(dist)#
+	if (check==TRUE){#
+		if (is.null(rownames(traits))) {#
+            stop("\n Error in rownames of traits\n")#
+        }#
+        if (is.null(colnames(dist))) {#
+            stop("\n Error in colnames of dist\n")#
+        }#
+        if (is.null(rownames(dist))) {#
+            stop("\n Error in rownames of dist\n")#
+        }			#
+		chec<-rownames(traits)==colnames(dist)#
+		if (length(which(chec==FALSE))!=0){#
+			stop("\n Matrices labels do not match. Check data\n")#
+		}#
+	}#
+	ordination<-wcmdscale(sqrt(dist),eig=TRUE)#
+	values<-ordination$eig[which((ordination$eig>=0)==TRUE)]#
+	vectors<-ordination$points#
+	colnames(vectors)=colnames(vectors,do.NULL=FALSE,prefix="Axis.")#
+	relative<-values/sum(values)#
+	if(cumulative<sum(relative[1:2])){#
+		print(paste("Relative eigenvalue for axis 1 =",relative[1]))#
+		print(paste("Relative eigenvalue for axis 2 =",relative[2]))#
+		stop("\n Cumulative percentage must be higher than the cumulative percentage of the first two eigenvalues\n")#
+	}#
+	cumulative2<-as.vector(rep(NA,length(values)))#
+	for (i in 1:length(values)){#
+		cumulative2[i]<-sum((values/sum(values))[1:i])#
+	}#
+	use<-which((cumulative2<=cumulative)==TRUE)#
+	if(cumulative==1){#
+		use<-1:(length(values)-1)#
+	}#
+	values2<-cbind(values,relative,cumulative2)#
+	colnames(values2)=c("Eigenvalues","Relative_eig","Cumul_eig")#
+	rownames(values2)=1:length(values)#
+	x<-vectors[,use]#
+	vare<-dim(traits)[2]#
+	fac<-length(use)#
+	xnam <- paste("x[,", 1:fac,"]", sep="")#
+	result<-matrix(NA,nrow=vare,ncol=fac)#
+		for(i in 1:vare){#
+			y<-traits[,i]#
+			for (j in 1:fac){#
+				result[i,j]<-as.numeric(summary(lm(as.formula(paste("y ~ ", paste(xnam[1:j], collapse= "+")))))$r.squared)#
+				}	#
+		}#
+	colnames(result)=colnames(vectors)[1:fac]#
+	rownames(result)=colnames(traits,do.NULL=FALSE,prefix="Trait.")#
+	resFIN<-matrix(NA,vare,6)#
+		for(i in 1:vare){#
+			y<-traits[,i]#
+			MOR=NULL#
+			xnam2<-xnam#
+			possi<-1:fac#
+			possi2<-1:fac#
+			f<-character()		#
+			res.MORAN<-matrix(NA,fac,2)#
+				repeat{#
+					result.moran<-matrix(NA,2,fac)#
+					for (j in possi2){#
+						regre<-lm(as.formula(paste("y ~ ",paste(f,sep="",collapse=" + "),paste("+",xnam[j]),collapse=" + ")))#
+						moran<-Moran.I(regre$residuals,dist,scaled=TRUE)#
+						result.moran[1,j]<-moran$observed#
+						result.moran[2,j]<-moran$p.value#
+						}#
+					colnames(result.moran)=possi#
+					menor<-as.numeric(noquote(names(sort(result.moran[1,],decreasing=FALSE))[1]))#
+					xnam2<-xnam2[-which(xnam2==xnam[menor])]#
+					MOR<-result.moran[1,menor]#
+					pMOR<-result.moran[2,menor]#
+					f<-c(f,paste(xnam[menor]))#
+					res.MORAN[length(f),1]<-MOR#
+					res.MORAN[length(f),2]<-pMOR#
+					possi2<-possi2[-which(possi2==possi[menor])]			#
+					if (length(f)==fac) break#
+					if ((MOR<=VMoran)==TRUE){#
+						if (pMOR>=pMoran) break#
+					}#
+				}#
+			minMORAN<-length(f)#
+			regre2<-lm(as.formula(paste("y ~ ",paste(f[1:minMORAN],sep="",collapse=" + "))))#
+			resFIN[i,1]<-paste("y ~ ",paste(f[1:minMORAN],sep="",collapse=" + "))#
+			resFIN[i,2]<-minMORAN#
+			moran2<-Moran.I(regre2$residuals,dist,scaled=TRUE)#
+			resFIN[i,3]<-moran2$observed#
+			resFIN[i,4]<-moran2$p.value#
+			summary.regre2<-summary(regre2)#
+			resFIN[i,5]<-as.numeric(summary.regre2$r.squared)#
+			resFIN[i,6]<-as.numeric(pf(summary.regre2$fstatistic[1],summary.regre2$fstatistic[2],summary.regre2$fstatistic[3],lower.tail=FALSE))#
+		}#
+	colnames(resFIN)=c("Parameters","N.Parameters","Moran.Obs","Moran.p","R.Squared","p")#
+	rownames(resFIN)=colnames(traits,do.NULL=FALSE,prefix="Trait.")#
+	res.x<-t(as.matrix(values2[1:fac,3]))#
+	colnames(res.x)=colnames(res.x,do.NULL=FALSE,prefix="Axis.")#
+	rownames(res.x)="Cumulative"#
+	inf<-res.x[1,fac]#
+	RES<-list(values=values2,vectors=vectors,inf.cumulative=inf,n.axis.considered=fac,moran.less.than=VMoran,p.moran.greater.than=pMoran,PSR.curve.axis.x=res.x,PSR.curve.axis.y=result,minimum.moran=resFIN)#
+	class(RES)<-"pvr"#
+	return(RES)#
+}
+ls()
+data(flona)
+traits<-flona$traits[,1:4]
+dist<-flona$phylo
+PVR(traits,dist)
+require(vegan)
+PVR(traits,dist)
+noquote
+pf
