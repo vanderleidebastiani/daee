@@ -1,24 +1,27 @@
 Package: daee
 Type: Package
 Title: Data Analysis for Ecology and Evolution
-Version: 0.1.2
-Date: 2017-02-06
+Version: 0.1.3
+Date: 2017-11-28
 Author: Vanderlei Julio Debastiani
 Maintainer: Vanderlei Julio Debastiani
     <vanderleidebastiani@yahoo.com.br>
 Depends:
-    PCPS
+    PCPS,
+    ape
 Imports:
-    ape,
     bbmle,
     stats,
     graphics,
-    utils
+    utils,
+    phytools,
 Description: Set of functions for analysis of ecological and evolutionary
     data. These functions calculate Phylogenetic Eigenvector Regression (PVR)
-    with eigenvector selection, extract residuals from Mantel test and generate
+    with eigenvector selection, extract residuals from Mantel test, generate
     Linear Models (LM) with all possible combinations of variables included in
-    the full model. The functions are available as an R package only to facilitate
+    the full model, show information about a label in a phylogenetic tree, makes
+    node labels, add species in a phylogenetic tree and organize a list in a single
+    matrix. The functions are available as an R package only to facilitate
     installation.
 License: GPL-2
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

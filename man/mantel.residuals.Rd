@@ -32,4 +32,3 @@ Function to extract residuals from Mantel test.
 Vanderlei Julio Debastiani <vanderleidebastiani@yahoo.com.br>
 }
 \keyword{daee}
-

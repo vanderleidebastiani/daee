@@ -30,8 +30,8 @@
 #' the statistical significance is reached (Diniz-Filho et al 2011).
 #' 
 #' @encoding UTF-8
+#' @import ape
 #' @importFrom stats lm residuals summary.lm as.dist as.formula pf
-#' @importFrom ape Moran.I
 #' @importFrom graphics abline plot
 #' @aliases PVR plot.pvr
 #' @param traits Species described by continuous traits, with traits as columns 

@@ -4,6 +4,7 @@
 \name{PVR}
 \alias{PVR}
 \alias{plot.pvr}
+\alias{plot.pvr}
 \title{Phylogenetic Eigenvector Regression}
 \usage{
 PVR(traits, dist, cumulative = 0.99, VMoran = 0.025, pMoran = 0.05,
@@ -94,9 +95,6 @@ Res
 plot(Res, trait = 1)
 
 }
-\author{
-Vanderlei Julio Debastiani <vanderleidebastiani@yahoo.com.br>
-}
 \references{
 Diniz-Filho, J. A. F., Sant'Ana, C. E. R., Bini, L. M. (1998). An 
 eigenvector method for estimating phylogenetic inertia. Evolution, 52(5), 1247–1262.
@@ -105,5 +103,7 @@ Diniz-Filho, J.A.F., Bini, L. M., Rangel, T. F., Morales-Castilla, I.,
 Olalla-Tárraga, M. Á., Rodríguez, M. Á. & Hawkins, B. A. (2011). On the selection of 
 phylogenetic eigenvectors for ecological analyses. Ecography, 35(3), 239–249.
 }
+\author{
+Vanderlei Julio Debastiani <vanderleidebastiani@yahoo.com.br>
+}
 \keyword{daee}
-
