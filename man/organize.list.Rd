@@ -26,7 +26,7 @@ B<-matrix(2,3,6)
 rownames(B) <- rownames(B, do.NULL = FALSE, prefix = "B.")
 C<-matrix(3,15,6)
 rownames(C) <- rownames(C, do.NULL = FALSE, prefix = "C.")
-res<-list(as.data.frame(A), as.data.frame(B), as.data.frame(C))
+RES<-list(as.data.frame(A), as.data.frame(B), as.data.frame(C))
 organize.list(RES)
 organize.list(RES, force.names = TRUE)
 }
