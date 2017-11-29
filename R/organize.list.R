@@ -16,7 +16,7 @@
 #' rownames(B) <- rownames(B, do.NULL = FALSE, prefix = "B.")
 #' C<-matrix(3,15,6)
 #' rownames(C) <- rownames(C, do.NULL = FALSE, prefix = "C.")
-#' RES<-list(as.data.frame(A), as.data.frame(B), as.data.frame(C))
+#' res<-list(as.data.frame(A), as.data.frame(B), as.data.frame(C))
 #' organize.list(RES)
 #' organize.list(RES, force.names = TRUE)
 #' @export
@@ -24,21 +24,25 @@ organize.list <- function(x, force.names = FALSE){
 	if(!inherits(x, "list")){
 		stop("\n x must be a list \n")
 	}
-	d <- cumsum(c(0, sapply(x, nrow))) # number of row for each matrix
-	if(length(unique(sapply(x, ncol)))!=1){
+	n.row.list <- sapply(x, nrow)
+	n.col.list <- sapply(x, ncol)
+	d <- cumsum(c(0, n.row.list))
+	if(length(unique(n.col.list))!=1){
 		stop("\n all data.frame or matrix in x must be equal number of columns \n")
 	}
-	res <- matrix(NA, sum(sapply(x, nrow)), sapply(x, ncol)[1]) # number of col must be equal for all matrix
+	res <- matrix(NA, sum(n.row.list), n.col.list[1])
 	colnames(res) <- colnames(x[[1]])
 	rownames(res) <- rownames(res, do.NULL = FALSE)
 	if(is.null(names(x))){
 		names(x) <- paste("list", 1:length(x), sep = ".")
 	}
 	for(i in 1:length(x)){
-		res[(d[i]+1):d[i+1],] <- as.matrix(x[[i]])
-		rownames(res)[(d[i]+1):d[i+1]] <- rownames(x[[i]], do.NULL = FALSE, prefix = paste(names(x)[i], ".", sep = ""))
-		if(force.names){
-			rownames(res)[(d[i]+1):d[i+1]] <- paste(names(x)[i], ".", rownames(res)[(d[i]+1):d[i+1]], sep = "")
+		if(n.row.list[i]>0){
+			res[(d[i]+1):d[i+1],] <- as.matrix(x[[i]])
+			rownames(res)[(d[i]+1):d[i+1]] <- rownames(x[[i]], do.NULL = FALSE, prefix = paste(names(x)[i], ".", sep = ""))
+			if(force.names){
+				rownames(res)[(d[i]+1):d[i+1]] <- paste(names(x)[i], ".", rownames(res)[(d[i]+1):d[i+1]], sep = "")
+			}
 		}
 	}
 	return(res)
