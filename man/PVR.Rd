@@ -22,10 +22,10 @@ and species as rows.}
 considered in the analysis. Cumulative percentage must be higher than the 
 cumulative percentage of the first two eigenvalues, and less than 1.}
 
-\item{VMoran}{Stopping rule based on Moran’s I value (Absolute value, smaller than
+\item{VMoran}{Stopping rule based on Moran I value (Absolute value, smaller than
 the specified value).}
 
-\item{pMoran}{Stopping rule based on the p-value of Moran's I (Greater than the specified). 
+\item{pMoran}{Stopping rule based on the p-value of Moran I (Greater than the specified). 
 check Logical argument (TRUE or FALSE) that checks  whether traits and phylogeny
 taxa labels match. The sequence of species in the trait data must be the same as 
 that in the phylogenetic distance matrix.}
@@ -45,11 +45,11 @@ for the PCoA of distance matrix.} \item{vectors}{The principal coordinates with
 positive eigenvalues.} \item{inf.cumulative}{Percentage of the variation in the 
 phylogenetic distances considered in the analysis ( The result should be approximately
 the specified cumulative value).} \item{n.axis.considered}{Number of axes considered.}
-\item{moran.less.than}{Moran’s I value considered in the stopping rules (Absolute 
+\item{moran.less.than}{Morans I value considered in the stopping rules (Absolute 
 value).} \item{p.moran.greater.than}{Stopping rule for the p-value.} \item{PSR.curve.axis.x}{Values
 for the PSR curve (Abscissa).} \item{PSR.curve.axis.y}{Values for the PSR curve
 (Ordinate, for each traits).} \item{minimun.moran}{Parameters, number of parameters, 
-observed Moran’s I, p-value for Moran’s I, R Squared and p-value for regression model
+observed Moran I, p-value for Moran I, R Squared and p-value for regression model
 that minimize autocorrelation coefficients in the residuals for each trait.}
 }
 \description{
@@ -58,7 +58,7 @@ Phylogenetic Eigenvector Regression (PVR) and eigenvector selection.
 \details{
 This function is based on a non-sequential approach, that uses the combination
 of eigenvectors that minimizes the residual phylogenetic autocorrelation, 
-measured by  Moran’s I. The method can be used to measure the level of 
+measured by Moran I. The method can be used to measure the level of 
 phylogenetic signal in ecological data and to study correlated evolution
 (Diniz-Filho et al 2011).
 
@@ -73,14 +73,14 @@ Y = Xb+e
 where Y is a vector describing trait variation in the set of species, X contains
 a set of k eigenvectors, b is the vector with regression coefficients estimated 
 and e its residuals, the part of variation in Y that is not explained by the 
-X (Diniz-Filho et al 1998).
+X (Diniz-Filho et al 1998). 
 
 The function use an iterative search for the eigenvector that reduces the autocorrelation
 in the residuals. Primarily, the regression for all eigenvectors is calculated, obtaining
-the residuas. Then,  Moran’s I for each eigenvector is calculated for the residuals. The 
-function select the eingenvector with the lowest Moran’s I, and then, as new eigenvectors 
+the residuas. Then, Moran I for each eigenvector is calculated for the residuals. The 
+function select the eingenvector with the lowest Moran I, and then, as new eigenvectors 
 are added to the model, residuals are updated and autocorrelation is reestimated. The search
-stops when residual autocorrelation is reduced below threshold Moran’s I specified and when 
+stops when residual autocorrelation is reduced below threshold Moran I specified and when 
 the statistical significance is reached (Diniz-Filho et al 2011).
 }
 \note{
@@ -96,12 +96,12 @@ plot(Res, trait = 1)
 
 }
 \references{
-Diniz-Filho, J. A. F., Sant'Ana, C. E. R., Bini, L. M. (1998). An 
-eigenvector method for estimating phylogenetic inertia. Evolution, 52(5), 1247–1262.
+Diniz-Filho, J. A. F., Santana, C. E. R., Bini, L. M. (1998). An 
+eigenvector method for estimating phylogenetic inertia. Evolution, 52(5), 1247-1262.
 
 Diniz-Filho, J.A.F., Bini, L. M., Rangel, T. F., Morales-Castilla, I., 
-Olalla-Tárraga, M. Á., Rodríguez, M. Á. & Hawkins, B. A. (2011). On the selection of 
-phylogenetic eigenvectors for ecological analyses. Ecography, 35(3), 239–249.
+Olalla-Tarraga, M. A., Rodriguez, M. A. & Hawkins, B. A. (2011). On the selection of 
+phylogenetic eigenvectors for ecological analyses. Ecography, 35(3), 239-249.
 }
 \author{
 Vanderlei Julio Debastiani <vanderleidebastiani@yahoo.com.br>

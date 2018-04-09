@@ -1,6 +1,6 @@
-#' Residuals from Mantel test
+#' @title Residuals from Mantel test
 #' 
-#' Function to extract residuals from Mantel test.
+#' @description Function to extract residuals from Mantel test.
 #' 
 #' @encoding UTF-8
 #' @importFrom stats lm residuals summary.lm as.dist

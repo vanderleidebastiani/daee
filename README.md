@@ -1,4 +1,4 @@
-daee 0.1.3
+daee 0.1.4
 ====
 
 daee - Data Analysis for Ecology and Evolution
@@ -12,7 +12,10 @@ List of functions:
 - Show information about a label in a phylogenetic tree;
 - Makes node labels;
 - Add species in a phylogenetic tree;
-- Organize a list in a single matrix.
+- Organize a list in a single matrix;
+- Compact a phylogenetic tree;
+- Define graphical parameters to plot phylogenetic tree;
+- Plot phylogenetic tree with nodes collapsed.
 
 
 ## Installation
@@ -23,6 +26,3 @@ To install the latest version of this package, use [`devtools`](https://github.c
 require(devtools)
 install_github("vanderleidebastiani/daee”)
 ```
-
-Require last version of [`SYNCSA`](https://github.com/vanderleidebastiani/SYNCSA) and 
-[`PCPS`](https://github.com/vanderleidebastiani/PCPS) packages.

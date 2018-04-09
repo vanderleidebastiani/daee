@@ -46,8 +46,10 @@
 #' # add.taxa.phylo.phylomatic
 #' taxa <- matrix(c("B","B","D/D1/DD1","D/D2/DD2/DDD1"),2,2)
 #' taxa
-#' plot(add.taxa.phylo.phylomatic(tree, taxa, renove.artificial.tip = TRUE)$tree, show.node.label = TRUE)
-#' plot(add.taxa.phylo.phylomatic(tree, taxa, renove.artificial.tip = FALSE)$tree, show.node.label = TRUE)
+#' plot(add.taxa.phylo.phylomatic(tree, taxa, renove.artificial.tip = TRUE)$tree, 
+#' 	 show.node.label = TRUE)
+#' plot(add.taxa.phylo.phylomatic(tree, taxa, renove.artificial.tip = FALSE)$tree, 
+#' 	 show.node.label = TRUE)
 #' @export
 add.taxa.phylo <- function(tree, taxa, m = 0, prefix = "NeWNodEPhylO"){
 	res <- list(call = match.call())
