@@ -3,7 +3,7 @@ daee 0.1.4
 
 daee - Data Analysis for Ecology and Evolution
 
-Set of functions for analysis of ecological and evolutionary data. The functions are available as an R package only to facilitate installation.
+Set of functions for analyzing  ecological and evolutionary data. The functions are available as an R package only to facilitate installation.
 
 List of functions:
 - Calculate Phylogenetic Eigenvector Regression (PVR) with eigenvector selection;
