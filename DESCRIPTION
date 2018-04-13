@@ -1,8 +1,8 @@
 Package: daee
 Type: Package
 Title: Data Analysis for Ecology and Evolution
-Version: 0.1.4
-Date: 2018-04-09
+Version: 0.1.5
+Date: 2018-04-13
 Author: Vanderlei Julio Debastiani
 Maintainer: Vanderlei Julio Debastiani
     <vanderleidebastiani@yahoo.com.br>
@@ -23,7 +23,8 @@ Description: Set of functions for analysis of ecological and evolutionary
     the full model, show information about a label in a phylogenetic tree, makes
     node labels, add species in a phylogenetic tree, organize a list in a single
     matrix, compact a phylogenetic tree, define graphical parameters to plot 
-    phylogenetic tree and plot phylogenetic tree with nodes collapsed. The 
-    functions are available as an R package only to facilitate installation.
+    phylogenetic tree, plot phylogenetic tree with nodes collapsed and extract 
+    details of information criterion. The functions are available as an R package 
+    only to facilitate installation.
 License: GPL-2
 RoxygenNote: 6.0.1

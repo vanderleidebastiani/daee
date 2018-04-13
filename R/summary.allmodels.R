@@ -1,7 +1,7 @@
-#' @rdname all.models
+#' @rdname allmodels
 #' @encoding UTF-8
 #' @export
-summary.models<-function(object, ...){
+summary.allmodels<-function(object, ...){
 	res<-list()
     res$call <- object$call
     res$N_models<-object$N_models

@@ -10,7 +10,7 @@
 #' @importFrom stats glm as.formula
 #' @importFrom bbmle ICtab
 #' @importFrom utils combn
-#' @aliases all.models print.models summary.models
+#' @aliases allmodels print.allmodels summary.allmodels
 #' @param response A data frame containing the response variable.
 #' @param variables A data frame containing all the independent variables for the models.
 #' @param subset Maximum number of independent  variables to be considered in each model.
@@ -20,10 +20,10 @@
 #' only the intercept should be included (Default only_intercept = FALSE).
 #' @param importance Logical argument (TRUE or FALSE) to specify if the relative importance
 #' of variables should be calculated. (Default importance = TRUE).
-#' @param object An object of class models.
-#' @param x An object of class models.
+#' @param object An object of class allmodels.
+#' @param x An object of class allmodels.
 #' @param n Number of model for print.
-#' @param ... Other parameters for the respective functions. In all.models function the 
+#' @param ... Other parameters for the respective functions. In allmodels function the 
 #' parameters are for the glm function.
 #' @return \item{Envir_class}{The class of each variable.} \item{N_models}{The number of 
 #' models.} \item{IC}{A data frame containing the information criterion, the number of 
@@ -36,16 +36,17 @@
 #' @keywords daee
 #' @examples
 #'
+#' #require(vegan)
 #' #data(mite)
 #' #data(mite.pcnm)
 #' #response<-rowSums(mite)
-#' #Res<-all.models(response,mite.pcnm,subset=3)
+#' #Res<-allmodels(response,mite.pcnm,subset=3)
 #' #Res
 #' #summary(Res)
 #' #Res$Models$Model_1157
 #' 
 #' @export
-all.models<-function(response, variables, subset, type = "AICc", only_intercept = FALSE, importance = TRUE, ...){
+allmodels<-function(response, variables, subset, type = "AICc", only_intercept = FALSE, importance = TRUE, ...){
 	ImpValue<-NULL
 	colnames(variables)<-colnames(variables, do.NULL = FALSE, prefix = "var_")
 	dados<-data.frame(response, variables)
@@ -96,6 +97,6 @@ all.models<-function(response, variables, subset, type = "AICc", only_intercept 
 		N_models<-N_models+1
 	}
 	Results<-list(call = match.call(), Envir_class = envir_class, N_models = N_models, Models = RES, IC = TAB_IC, ImpValue = ImpValue)
-	class(Results)<-"models"
+	class(Results)<-"allmodels"
 	return(Results)
 }

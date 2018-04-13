@@ -1,7 +1,7 @@
-#' @rdname all.models
+#' @rdname allmodels
 #' @encoding UTF-8
 #' @export
-print.models<-function(x, n = 10, ...){
+print.allmodels<-function(x, n = 10, ...){
 	if(x$N_models<n){
 		n<-x$N_models
 	}
