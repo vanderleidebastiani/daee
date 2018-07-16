@@ -1,4 +1,4 @@
-daee 0.1.5
+daee 0.1.6
 ====
 
 daee - Data Analysis for Ecology and Evolution

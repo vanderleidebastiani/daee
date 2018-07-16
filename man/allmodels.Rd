@@ -52,8 +52,8 @@ function ICtab.} \item{Models}{A list with all models. Each model is the class g
 \description{
 The function generates Linear Models (LM) with all possible combinations of all
 variables included in the full model. Each model is a GLM of family gaussian with
-the response variable modeled by one or more independent variables (Y= X1b1+e, 
-Y= X1b1+X2b2+e, and so on).
+the response variable modeled by one or more independent variables (Y= a+X1b1+e, 
+Y= a+X1b1+X2b2+e, and so on).
 }
 \note{
 If the model with only the intercept is include, this will be the last model.

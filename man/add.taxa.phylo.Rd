@@ -16,7 +16,7 @@ add.taxa.phylo.phylomatic(tree, taxa, renove.artificial.tip = TRUE, m = 0,
   prefix = "NeWNodEPhylomatiC")
 
 add.taxa.phylo.random(tree, taxa, random.order = TRUE, m = 0,
-  prefix = "NeWNodERandoM")
+  prefix = "NeWNodERandoM", method = "length")
 }
 \arguments{
 \item{tree}{as an object of class "phylo".}
@@ -30,6 +30,8 @@ add.taxa.phylo.random(tree, taxa, random.order = TRUE, m = 0,
 \item{renove.artificial.tip}{Logical argument (TRUE or FALSE) to specify if artificial tips are removed or not, only to add.taxa.phylo.phylomatic function (default renove.artificial.tip = TRUE).}
 
 \item{random.order}{Logical argument (TRUE or FALSE) to specify if sequence order in input is keeped (FALSE) or random (TRUE) (default random.order = TRUE).}
+
+\item{method}{The method to add the new tip, partial match to "equal" or "length". See details (Default method = "length").}
 }
 \value{
 A list with: \item{call}{The call arguments.}\item{m.start}{The start m value.} \item{m.current}{The new m value, the difference between m.start and m.current is the number of node names created.} \item{prefix}{Prefix used.} \item{new.tips}{The new tips.}\item{tree}{The tree, class "phylo".}
@@ -38,7 +40,7 @@ A list with: \item{call}{The call arguments.}\item{m.start}{The start m value.} 
 Function add species in a phylogenetic tree. Three method are available, see details. This function is based in the functions \code{\link{bind.tree}} and \code{\link{bind.tip}}.
 }
 \details{
-The function add.taxa.phylo.random add new tips at random. Taxa object is matrix with two columns. The first column is the node label to new tip be anchored. The tip will be anchored random inside this clade. The most recent common ancestors known can be used to define the point of anchorage. The second column is the label to new tip.
+The function add.taxa.phylo.random add new tips at random. Taxa object is matrix with two columns. The first column is the node label to new tip be anchored. The tip will be anchored random inside this clade. The most recent common ancestors known can be used to define the point of anchorage. The second column is the label to new tip. Two methods are available, the method "length" add the tip with probability equivalent to edge length, long edge have more probability than short edge. The method "equal" each edge has equal probability to receive the new tip.
 
 The function add.taxa.phylo allows to add the new tips according to more related species or node provided. The taxa object is matrix with three columns. The first column is the node label or tip label to new tip be anchored. The second column is the label to new tip. The third column is the terminal edge length for the added tips, can be NA. If anchored label is a node the new tip is inserted as polytomy and edge length is not used, the length is computed to keep the tree ultrametric. If anchored is a tip label and edge length was provided the new tip is inserted with length provide, and if edge length was NA the length is computed simply by split current edge length by two.
 
@@ -74,7 +76,7 @@ plot(add.taxa.phylo.phylomatic(tree, taxa, renove.artificial.tip = FALSE)$tree,
 	 show.node.label = TRUE)
 }
 \seealso{
-\code{\link{bind.tree}}, \code{\link{bind.tip}}
+\code{\link{bind.tree}}, \code{\link{bind.tip}}, \code{\link{add.random}}, \code{\link{add.tip.random}}
 }
 \author{
 Vanderlei Julio Debastiani <vanderleidebastiani@yahoo.com.br>

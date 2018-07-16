@@ -68,10 +68,10 @@ summarize the phylogenetic structure (Diniz-Filho et al 2008).
 
 The sets of eigenvectors is selected with multiple regression model:
 
-Y = Xb+e
+Y = a+Xb+e
 
 where Y is a vector describing trait variation in the set of species, X contains
-a set of k eigenvectors, b is the vector with regression coefficients estimated 
+a set of k eigenvectors, a the intercept, b is the vector with regression coefficients estimated 
 and e its residuals, the part of variation in Y that is not explained by the 
 X (Diniz-Filho et al 1998). 
 
