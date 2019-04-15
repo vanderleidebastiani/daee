@@ -7,8 +7,8 @@
 \usage{
 plotcollapse.phylo(tree, nodes, show.tip.label = TRUE,
   show.node.label = FALSE, edge.color = "black", edge.width = 1,
-  edge.lty = 1, polygon.color = "gray", density = NULL, border = NULL,
-  nhchar = 2, text.nodes.color = NULL, ...)
+  edge.lty = 1, polygon.color = "gray", density = NULL,
+  border = NULL, nhchar = 2, text.nodes.color = NULL, ...)
 }
 \arguments{
 \item{tree}{phylogeny as an object of class "phylo".}

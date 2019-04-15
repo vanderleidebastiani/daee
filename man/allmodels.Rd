@@ -6,8 +6,6 @@
 \alias{allmodels}
 \alias{print.allmodels}
 \alias{summary.allmodels}
-\alias{print.allmodels}
-\alias{summary.allmodels}
 \title{Linear Models with all possible combinations of all variables}
 \usage{
 allmodels(response, variables, subset, type = "AICc",

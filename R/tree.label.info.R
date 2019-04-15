@@ -34,26 +34,28 @@ tree.label.info <- function(tree, label){
 	}
 	H <- phytools::nodeHeights(tree)
 	HM <- max(H)
+	res <- data.frame(row.names = label)
 	if(where<=n){
-		edge <- which(tree$edge[,2] == where)
-		edge.length <- tree$edge.length[edge]
-		edge.height <- HM - H[edge, 2]
-		type <- "tip"
+		res$edge <- which(tree$edge[,2] == where)
+		res$edge.length <- tree$edge.length[res$edge]
+		res$edge.height <- HM - H[res$edge, 2]
+		res$max.height <- HM
+		res$type <- "tip"
 	}else{
 		if (where == (length(tree$tip.label) + 1)){
-			edge<-which(tree$edge[,1] == where)[1]
-			edge.length <- 0
-			edge.height <- HM - H[edge, 1]
-			edge <- NA
-			type <- "root"
+			res$edge<-which(tree$edge[,1] == where)[1]
+			res$edge.length <- 0
+			res$edge.height <- HM - H[res$edge, 1]
+			res$edge <- NA
+			res$max.height <- HM
+			res$type <- "root"
 		} else {
-			edge <- which(tree$edge[,2] == where)
-			edge.length <-tree$edge.length[edge]
-			edge.height <- HM - H[edge, 2]	
-			type <- "node"
+			res$edge <- which(tree$edge[,2] == where)
+			res$edge.length <-tree$edge.length[res$edge]
+			res$edge.height <- HM - H[res$edge, 2]
+			res$max.height <- HM
+			res$type <- "node"
 		}
 	}
-	res <- data.frame(edge, edge.length, edge.height, max.height = HM, type = type)
-	rownames(res) <- label
 	return(res)
 }

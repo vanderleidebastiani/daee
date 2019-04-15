@@ -4,7 +4,6 @@
 \name{PVR}
 \alias{PVR}
 \alias{plot.pvr}
-\alias{plot.pvr}
 \title{Phylogenetic Eigenvector Regression}
 \usage{
 PVR(traits, dist, cumulative = 0.99, VMoran = 0.025, pMoran = 0.05,

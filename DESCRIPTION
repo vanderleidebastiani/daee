@@ -27,4 +27,5 @@ Description: Set of functions for analysis of ecological and evolutionary
     details of information criterion. The functions are available as an R package 
     only to facilitate installation.
 License: GPL-2
-RoxygenNote: 6.0.1
+Encoding: UTF-8
+RoxygenNote: 6.1.1
