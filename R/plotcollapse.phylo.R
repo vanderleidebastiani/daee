@@ -41,7 +41,7 @@
 #' tree<-rtree(15)
 #' tree <- makeNodeLabel(tree)
 #' plot.phylo(tree, show.node.label = TRUE)
-#' nodes <- c("Node9","Node2")
+#' nodes <- c("Node6", "Node13")
 #' 
 #' plot.phylo(tree, show.node.label = TRUE)
 #' plotcollapse.phylo(tree, nodes)
@@ -62,7 +62,7 @@
 #' plot.phylo(tree, show.node.label = TRUE)
 #' tree.compacted <- compact.tree(tree, "Node6")
 #' plot.phylo(tree.compacted, show.node.label = TRUE) # plot tree compacted
-#' nodes <- c("Node5","Node6")
+#' nodes <- c("Node5","Node7")
 #' plotcollapse.phylo(tree, nodes, nhchar = 4)
 #' plotcollapse.phylo(tree.compacted, nodes, nhchar = 4)
 #' 

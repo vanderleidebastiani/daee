@@ -5,10 +5,21 @@
 \alias{plotcollapse.phylo}
 \title{Plot phylogenetic tree with nodes collapsed.}
 \usage{
-plotcollapse.phylo(tree, nodes, show.tip.label = TRUE,
-  show.node.label = FALSE, edge.color = "black", edge.width = 1,
-  edge.lty = 1, polygon.color = "gray", density = NULL,
-  border = NULL, nhchar = 2, text.nodes.color = NULL, ...)
+plotcollapse.phylo(
+  tree,
+  nodes,
+  show.tip.label = TRUE,
+  show.node.label = FALSE,
+  edge.color = "black",
+  edge.width = 1,
+  edge.lty = 1,
+  polygon.color = "gray",
+  density = NULL,
+  border = NULL,
+  nhchar = 2,
+  text.nodes.color = NULL,
+  ...
+)
 }
 \arguments{
 \item{tree}{phylogeny as an object of class "phylo".}
@@ -62,7 +73,7 @@ set.seed(10)
 tree<-rtree(15)
 tree <- makeNodeLabel(tree)
 plot.phylo(tree, show.node.label = TRUE)
-nodes <- c("Node9","Node2")
+nodes <- c("Node6", "Node13")
 
 plot.phylo(tree, show.node.label = TRUE)
 plotcollapse.phylo(tree, nodes)
@@ -83,7 +94,7 @@ tree <- makeNodeLabel(tree)
 plot.phylo(tree, show.node.label = TRUE)
 tree.compacted <- compact.tree(tree, "Node6")
 plot.phylo(tree.compacted, show.node.label = TRUE) # plot tree compacted
-nodes <- c("Node5","Node6")
+nodes <- c("Node5","Node7")
 plotcollapse.phylo(tree, nodes, nhchar = 4)
 plotcollapse.phylo(tree.compacted, nodes, nhchar = 4)
 

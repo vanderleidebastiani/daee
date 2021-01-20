@@ -20,7 +20,7 @@
 #' tree <- rtree(15)
 #' tree <- makeNodeLabel(tree)
 #' plot.phylo(tree, show.node.label = TRUE)
-#' nodes <- c("Node2", "Node9")
+#' nodes <- c("Node6", "Node13")
 #' res <- compact.tree(tree, nodes)
 #' res
 #' plot.phylo(res, show.node.label = TRUE)

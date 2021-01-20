@@ -10,11 +10,22 @@
 \usage{
 add.taxa.phylo(tree, taxa, m = 0, prefix = "NeWNodEPhylO")
 
-add.taxa.phylo.phylomatic(tree, taxa, renove.artificial.tip = TRUE,
-  m = 0, prefix = "NeWNodEPhylomatiC")
+add.taxa.phylo.phylomatic(
+  tree,
+  taxa,
+  renove.artificial.tip = TRUE,
+  m = 0,
+  prefix = "NeWNodEPhylomatiC"
+)
 
-add.taxa.phylo.random(tree, taxa, random.order = TRUE, m = 0,
-  prefix = "NeWNodERandoM", method = "length")
+add.taxa.phylo.random(
+  tree,
+  taxa,
+  random.order = TRUE,
+  m = 0,
+  prefix = "NeWNodERandoM",
+  method = "length"
+)
 }
 \arguments{
 \item{tree}{as an object of class "phylo".}

@@ -8,8 +8,15 @@
 \alias{summary.allmodels}
 \title{Linear Models with all possible combinations of all variables}
 \usage{
-allmodels(response, variables, subset, type = "AICc",
-  only_intercept = FALSE, importance = TRUE, ...)
+allmodels(
+  response,
+  variables,
+  subset,
+  type = "AICc",
+  only_intercept = FALSE,
+  importance = TRUE,
+  ...
+)
 
 \method{print}{allmodels}(x, n = 10, ...)
 

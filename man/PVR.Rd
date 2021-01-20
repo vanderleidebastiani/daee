@@ -6,8 +6,14 @@
 \alias{plot.pvr}
 \title{Phylogenetic Eigenvector Regression}
 \usage{
-PVR(traits, dist, cumulative = 0.99, VMoran = 0.025, pMoran = 0.05,
-  check = TRUE)
+PVR(
+  traits,
+  dist,
+  cumulative = 0.99,
+  VMoran = 0.025,
+  pMoran = 0.05,
+  check = TRUE
+)
 
 \method{plot}{pvr}(x, trait = 1, ...)
 }
@@ -88,10 +94,11 @@ in other words Trait~Axis_3+Axis_5 and so on.
 }
 \examples{
 
-data(flona)
-Res<-PVR(flona$traits[,1:4], flona$phylo, VMoran = 0.01)
-Res
-plot(Res, trait = 1)
+# require(SYNCSA)
+# data(flona)
+# Res <- PVR(flona$traits[,1:4], flona$phylo, VMoran = 0.01)
+# Res
+# plot(Res, trait = 1)
 
 }
 \references{
@@ -101,6 +108,9 @@ eigenvector method for estimating phylogenetic inertia. Evolution, 52(5), 1247-1
 Diniz-Filho, J.A.F., Bini, L. M., Rangel, T. F., Morales-Castilla, I., 
 Olalla-Tarraga, M. A., Rodriguez, M. A. & Hawkins, B. A. (2011). On the selection of 
 phylogenetic eigenvectors for ecological analyses. Ecography, 35(3), 239-249.
+}
+\seealso{
+\code{\link{PVR.adonis}}
 }
 \author{
 Vanderlei Julio Debastiani <vanderleidebastiani@yahoo.com.br>

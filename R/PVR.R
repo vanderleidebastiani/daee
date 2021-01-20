@@ -70,16 +70,18 @@
 #' Olalla-Tarraga, M. A., Rodriguez, M. A. & Hawkins, B. A. (2011). On the selection of 
 #' phylogenetic eigenvectors for ecological analyses. Ecography, 35(3), 239-249.
 #' @author Vanderlei Julio Debastiani <vanderleidebastiani@@yahoo.com.br>
+#' @seealso \code{\link{PVR.adonis}}
 #' @keywords daee
 #' @examples
 #'
-#' data(flona)
-#' Res<-PVR(flona$traits[,1:4], flona$phylo, VMoran = 0.01)
-#' Res
-#' plot(Res, trait = 1)
+#' # require(SYNCSA)
+#' # data(flona)
+#' # Res <- PVR(flona$traits[,1:4], flona$phylo, VMoran = 0.01)
+#' # Res
+#' # plot(Res, trait = 1)
 #' 
 #' @export
-PVR<-function(traits, dist, cumulative = 0.99, VMoran = 0.025, pMoran = 0.05, check = TRUE){
+PVR <- function(traits, dist, cumulative = 0.99, VMoran = 0.025, pMoran = 0.05, check = TRUE){
 	if(0>cumulative | cumulative>1){
 		stop("\n Cumulative percentage must be higher than the cumulative percentage of the first two eigenvalues, and less than 1\n")
 	}

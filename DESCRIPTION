@@ -1,8 +1,8 @@
 Package: daee
 Type: Package
 Title: Data Analysis for Ecology and Evolution
-Version: 0.1.6
-Date: 2018-07-16
+Version: 0.1.7
+Date: 2021-01-20
 Author: Vanderlei Julio Debastiani
 Maintainer: Vanderlei Julio Debastiani
     <vanderleidebastiani@yahoo.com.br>
@@ -16,6 +16,7 @@ Imports:
     utils,
     phytools,
     phylobase,
+    vegan,
 Description: Set of functions for analysis of ecological and evolutionary
     data. These functions calculate Phylogenetic Eigenvector Regression (PVR)
     with eigenvector selection, extract residuals from Mantel test, generate
@@ -28,4 +29,4 @@ Description: Set of functions for analysis of ecological and evolutionary
     only to facilitate installation.
 License: GPL-2
 Encoding: UTF-8
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1

@@ -5,8 +5,14 @@
 \alias{graphical.node.patterns}
 \title{Define graphical parameters to plot phylogenetic tree.}
 \usage{
-graphical.node.patterns(tree, nodes, basicpattern, nodespatterns,
-  include.node = TRUE, force.order = TRUE)
+graphical.node.patterns(
+  tree,
+  nodes,
+  basicpattern,
+  nodespatterns,
+  include.node = TRUE,
+  force.order = TRUE
+)
 }
 \arguments{
 \item{tree}{phylogeny as an object of class "phylo".}
